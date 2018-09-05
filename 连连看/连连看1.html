@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" src="script1.js"></script>
+</head>
+<body>
+	
+	<div id="container">
+		
+		<script type="text/javascript">
+			document.write('<ul>');
+			for (var i = 0;i <= 35;i ++) {
+				document.write('<li>');
+				document.write('<a href="javascript:showImage(' + i + ')">');
+				document.write('<img src="img0.gif" id="img' + i + '">');			
+				document.write('</a>');
+				document.write('</li>');
+			}
+			document.write('</ul>');
+		</script>
+		
+		<input id="startBtn" type="button" value="单击开始" onclick="init();">
+
+		<input id="restartBtn" type="button" value="重新游戏" onclick="restart();">
+	</div>
+
+</body>
+</html>
