@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>		
+		<table id="table1" width="500" border="1">
+			<tr>
+				<th>编号</th>
+				<th>姓名</th>
+				<th>年龄</th>
+				<th>操作</th>
+			</tr>
+		</table>
+		<form action="">
+			<table>
+				<tr>
+					<td>编号</td>
+					<td>
+						<input type="text" id="sid">
+					</td>
+				</tr>
+				<tr>
+					<td>姓名</td>
+					<td>
+						<input type="text" id="sname">
+					</td>
+				</tr>
+				<tr>
+					<td>年龄</td>
+					<td>
+						<input type="text" id="sage">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="button" id="addBtn" value="增加学生">
+					</td>
+				</tr>
+			</table>
+		</form>
+
+		<script type="text/javascript">
+		
+			//判定名字是否合法函数
+			function checkUserName(username) {
+				
+				var isLegal = false;
+				//判定字符串长度是否符合标准
+				if (username.length >= 3 && username.length <= 12){
+					//判定字符串首字符是否为小写字母
+					if (username.charCodeAt(0) >= 97 && username.charCodeAt(0) <= 122){
+						//判定字符串2~最后一位是否符合标准
+						for (var i = 1;i < username.length;i ++){
+							//判定第i个字符是否为小写字母
+							if (username.charCodeAt(i) >= 97 && username.charCodeAt(i) <= 122){
+								isLegal = true;
+							//判定第i个字符是否为数字
+							} else if (!isNaN(username[i])){
+								isLegal = true;
+							//判定第i个字符是否为下划线
+							} else if (username[i] == '_'){
+								isLegal = true;
+							//以上都不符合直接false并跳出整个循环
+							} else {
+								isLegal = false;
+								break;
+							}
+						}
+					}
+				}
+				
+				return isLegal;
+			}
+			
+					
+			window.onload = function() {
+
+				var addBtn = document.getElementById('addBtn');
+				var sid = document.getElementById('sid');
+				var sname = document.getElementById('sname');
+				var sage = document.getElementById('sage');
+				var table1 = document.getElementById('table1');
+				
+				
+				//添加数据模块
+				addBtn.onclick = function() {
+
+					//判定用户输入是否合法模块
+					if (sid.value == '' || sname.value == '' || sage.value == '') {
+						alert('请输入内容后点确定！');
+						sid.value = '';
+						sname.value = '';
+						sage.value = '';
+						return;
+					} else if (isNaN(sid.value) || isNaN(sage.value)) {
+						alert('编号和年龄必须为数字！');
+						sid.value = '';
+						sname.value = '';
+						sage.value = '';
+						return;
+					} else if (sage.value < 0 || sage.value > 100){
+						alert('你家正常年龄能为' + sage.value + '岁啊！');
+						sid.value = '';
+						sname.value = '';
+						sage.value = '';
+						return;
+					} else if (checkUserName(sname.value) == false){
+						alert('请输入一个合法的名字！');
+						sid.value = '';
+						sname.value = '';
+						sage.value = '';
+
+					}
+					
+					//通过判定后整理数据
+					var info = [sid.value,sname.value,sage.value];
+					
+					//拼接字符串，整理出一整行数据
+					var str = '';
+					str += '<tr>';
+					
+					for (var i = 0; i < 4; i++) {
+						str += '<td>';
+						if (i < 3) {
+							str += info[i];
+						} else {
+							str += '<input type="button" value="删除" class="delBtn"/>';
+						}
+						str += '</td>';
+					}
+					
+					str += '</tr>';
+					
+					//将这行数据添加到table1中
+					table1.innerHTML += str;
+					
+					//清空用户输入值
+					sid.value = '';
+					sname.value = '';
+					sage.value = '';
+					
+				}
+				
+				//清除数据模块
+				table1.onclick = function(e) {
+					
+					e = window.event || e;
+					
+					//获取用户点击的是哪一行中的某个对象
+					var currObj = e.target || e.srcElement;
+					
+					//判定用户点击的是否是删除按钮
+					if (currObj.className == 'delBtn') {
+						//用过删除按钮的节点找到其那一行的tr节点并彻底清空
+						currObj.parentNode.parentNode.outerHTML = '';
+						
+//						var tr = currObj.parentNode.parentNode;
+//						var tbody = tr.parentNode;						
+//						tbody.removeChild(tr);
+					}
+					
+				}
+
+			}
+		</script>
+
+	</body>
+
+</html>

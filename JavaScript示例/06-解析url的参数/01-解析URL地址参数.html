@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+		
+			var url = 'http://www.baidu.com?username=tom&userpwd=123456&usercode=a9';
+			var username ;
+				var userpwd ;
+				var usercode ;
+			/*
+			 * 
+			 * 调用函数，传入参数名，会得到对应的参数值
+			*/
+			window.onload = function(){
+				
+			function getParam(key){
+
+			var str = url.split('?');
+				
+				str = str[1];
+
+				var str = url.split('&');
+				
+				var str1 = str[0];
+				var str2 = str[1];
+				var str3 = str[2];
+				var str11 = str1.split('=');
+				var str12 = str2.split('=');
+				var str13 = str3.split('=');
+				 username = str11[1];
+				 alert(username);
+				 userpwd = str12[1];
+				 alert(userpwd);
+				 usercode = str13[1];
+				 alert(usercode);
+			}
+			getParam();
+			}
+			
+		</script>
+	</body>
+</html>

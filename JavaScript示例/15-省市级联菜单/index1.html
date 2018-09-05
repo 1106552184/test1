@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+
+		<select id="province">
+			
+			<option value="">全国</option>
+			
+		</select>
+
+		<select id="city">
+			
+			<option value="">请选择</option>
+			
+		</select>
+		<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+
+		<script type="text/javascript">
+		
+		/*
+		 * 返回xhr对象
+		 */
+		function getXhr(){
+			
+			var xhr;
+			
+			if(window.XMLHttpRequest){
+				
+				xhr = new XMLHttpRequest();//w3c标准
+			}else{
+				xhr = new ActiveXObject("Microsoft.XMLHTTP");//IE
+			}
+			return xhr;
+		}
+		
+			$(function() {
+				//获得省列表
+				var province = $('#province');
+				
+				//获得市列表
+				var city= $('#city');
+				
+				//获得shr对象
+				var xhr = getXhr();
+				
+				//这是请求的url
+				var url = "data.json";
+				
+				//设置请求的方式、地址
+				xhr.open('GET',url);
+				
+				//发出请求
+				
+				xhr.send();
+				
+				//事件回调
+				xhr.onreadystatechange = function(){
+					
+					//如果状态是4，
+					if(xhr.readyState == 4){
+						//且状态码是200
+						if(xhr.status == 200){
+							//获得省市数据
+							var data = JSON.parse(xhr.responseText);
+							
+							//循环遍历数据集合，动态生成省列表
+							$.each(data,function(index,el){
+								
+								//追加option
+								province.append('<option>'+ el.province+ '</option>');
+							
+							});
+							//省列表发生变化，联动市列表变化
+							province.on('change',function(){
+								
+								//清空城市
+								city.find('option:not(:eq(0))').remove();
+								
+
+								
+								//获得选中元素的下标
+								var index= this.selectedIndex;
+								
+								if(index == 0){
+
+									return;
+								}
+								
+								//根据下标获得城市列表
+								var cities = data[index - 1].cities;
+								
+								//动态生成城市列表
+								
+								$.each(cities,function(index,el){
+									
+									
+									//追加option
+									city.append('<option>'+ el+ '</option>');
+									
+								});
+								
+								
+							});
+							
+						}else{
+							alert('请求失败，错误码：' + xhr.status);
+						}
+					}
+				}
+			});
+			
+		</script>
+
+	</body>
+
+</html>

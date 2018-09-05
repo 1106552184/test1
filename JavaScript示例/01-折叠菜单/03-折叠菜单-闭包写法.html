@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			#menu {
+				width: 200px;
+				margin: 20px auto;
+				border: 1px solid #ccc;
+			}
+			
+			body {
+				font-size: 14px;
+			}
+			
+			ul,
+			li {
+				list-style-type: none;
+			}
+			
+			#menu p {
+				line-height: 26px;
+				background: #EEEEEE;
+				border-bottom: 1px solid #CCCCCC;
+				font-weight: bold;
+				cursor: pointer;
+				padding-left: 10px;
+			}
+			
+			#menu ul {
+				display: none;
+			}
+			
+			#menu ul li {
+				line-height: 24px;
+				padding-left: 5px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="menu">
+			<div>
+
+				<p>web前端</p>
+				<ul style="display: block;">
+					<li>html</li>
+					<li>css</li>
+					<li>javascript</li>
+					<li>Jquery</li>
+					<li>Vue</li>
+				</ul>
+
+			</div>
+			<div>
+
+				<p>后台开发</p>
+				<ul>
+					<li>java</li>
+					<li>php</li>
+					<li>python</li>
+					<li>ruby</li>
+					<li>nodejs</li>
+				</ul>
+
+			</div>
+			<div>
+
+				<p>数据库</p>
+				<ul>
+					<li>oracle</li>
+					<li>mysql</li>
+					<li>sb2</li>
+					<li>sqlsever</li>
+					<li>redis</li>
+				</ul>
+
+			</div>
+		</div>
+		<script>
+			//当网页加载完毕事件触发
+			window.onload = function() {
+
+				//获得折叠菜单的容器
+				var menuObj = document.getElementById('menu')
+
+				//获得折叠菜单所有p
+				var ps = menuObj.getElementsByTagName('p');
+
+				//获得折叠菜单中所有ul，内容
+				var uls = menuObj.getElementsByTagName('ul');
+
+				//便利所有标题元素
+				for (var i = 0; i < ps.length; i++) {
+
+					//循环添加标题单击事件
+					(function(pid) {
+						ps[i].onclick = function(e) {
+
+							//返回对应下标的ul
+							var currUl = uls[pid];
+
+							//动态显示隐藏对应的ul
+							if (currUl.style.display == 'block') {
+								currUl.style.display = 'none';
+							} else {
+								currUl.style.display = 'block';
+							}
+
+						}
+					})(i);
+
+				}
+			}
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+			}
+			
+			#div1 {
+				position: fixed;
+				left: 250px;
+				top: 250px;
+				width: 177px;
+				height: 219px;
+			}
+			#div2 {
+				position: fixed;
+				left: 50px;
+				top: 0px;
+				width: 177px;
+				height: 219px;
+			}
+			#div1 .img {
+				display: block;
+			}
+			
+			#star {
+				position: fixed;
+			}
+			#star1 {
+				position: fixed;
+				
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="div1">
+			<img src="plane.png" class="img"/>
+			<img src="plane.png" id="star" />
+			
+			<img src="star1.png" id="star1" />
+		</div>
+		<div id="div2">
+			<img src="plane.png" class="img"/>
+		</div>
+		<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			window.onload = function() {
+
+				//获得视口宽高
+
+				//视口宽度
+				var windowWidth = document.documentElement.clientWidth;
+				//视口高度
+				var windowHeight = document.documentElement.clientHeight;
+
+				var div1 = document.getElementById('div1');
+				//获得元素的宽度高度
+				var divWidth = div1.offsetWidth;
+				var divHeight = div1.offsetHeight;
+				var starWidth = star.offsetWidth;
+				var starHeight = star.offsetHeight;
+				var vLeft = 250;
+				var vTop = 250;
+				window.onkeydown = function(e) {
+
+					e = window.event || e
+
+					if (e.keyCode == 100) {
+
+						vLeft -= 10;
+					} else if (e.keyCode == 103) {
+						vLeft -= 10;
+						vTop -= 10;
+					} else if (e.keyCode == 105) {
+						vLeft += 10;
+						vTop -= 10;
+					} else if (e.keyCode == 97) {
+						vLeft -= 10;
+						vTop += 10;
+					} else if (e.keyCode == 99) {
+						vLeft += 10;
+						vTop += 10;
+					} else if (e.keyCode == 102) {
+
+						vLeft += 10;
+					} else if (e.keyCode == 104) {
+						vTop -= 10;
+					} else if (e.keyCode == 98) {
+						vTop += 10;
+					}
+
+				
+					//判断div是否超过视口范围
+					if (vTop < 0)
+						return;
+					if (vTop > windowHeight - divHeight)
+						vTop = windowHeight - divHeight;
+					if (vLeft < 0)
+						return;
+					if (vLeft > windowWidth - divWidth)
+						vLeft = windowWidth - divWidth;
+
+					div1.style.left = vLeft + 'px';
+					div1.style.top = vTop + 'px';
+					window.onresize = function() {
+						//视口宽度
+						windowWidth = document.documentElement.clientWidth;
+						//视口高度
+						windowHeight = document.documentElement.clientHeight;
+						//判断div是否超过视口范围
+						if (vTop < 0)
+							return;
+						if (vTop > windowHeight - divHeight)
+							vTop = windowHeight - divHeight;
+						if (vLeft < 0)
+							return;
+						if (vLeft > windowWidth - divWidth)
+							vLeft = windowWidth - divWidth;
+						div1.style.left = vLeft + 'px';
+						div1.style.top = vTop + 'px';
+
+					}
+					var top = vTop;
+					var index = 0;
+					if (e.keyCode == 101) {
+						index ++;
+						star = document.getElementById('star');
+						var timeId;
+					function startTimer() {
+					//启动定时器
+					 timerId = setInterval(function() {
+					
+						top -= 5 ;
+						if(top >= -10)
+							star.style.top = top + 'px';
+							star1.style.top = top + 'px';
+						/*else if(top < -10)
+							clearInterval(timerId);*/
+					},30);
+					//网页加载完毕自动执行定时器
+				}
+					
+				startTimer();
+				
+					}
+				}
+				$(document).contextmenu(function(e){
+					
+					alert('禁止右键');
+					return false;
+					
+					
+				});
+				$(document).keydown(function(e){
+					
+					if(e.keyCode == 123)
+					alert('请尊重他人劳动成果！！！！');
+						e.preventDefault();
+					
+					
+				});
+				}
+			
+		</script>
+		
+	</body>
+
+</html>

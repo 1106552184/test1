@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<table width="500" border="1" id="tb">
+			<th>编号</th>
+			<th>姓名</th>
+			<th>年龄</th>
+			<th>操作</th>
+		</table>
+		<form>
+			<table>
+				<tr>
+					<td>编号</td>
+					<td>
+						<input type="text" name="sid" id="sid" />
+					</td>
+				</tr>
+				<tr>
+					<td>姓名</td>
+					<td>
+						<input type="text" name="sname" id="sname" />
+					</td>
+				</tr>
+				<tr>
+					<td>年龄</td>
+					<td>
+						<input type="text" name="sage" id="sage" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="button" value="增加学生" id="addBtn" onclick="addStu();" />
+					</td>
+				</tr>
+			</table>
+		</form>
+		<script>
+			var sid = document.getElementById('sid');
+			var sname = document.getElementById('sname');
+			var sage = document.getElementById('sage');
+			var tb = document.getElementById('tb');
+
+			var tr = document.createElement('tr');
+			var j = 0;
+			function checkUserName(username) {
+				
+				var isLegal = false;
+				//判定字符串长度是否符合标准
+				if (username.length >= 3 && username.length <= 12){
+					//判定字符串首字符是否为小写字母
+					if (username.charCodeAt(0) >= 97 && username.charCodeAt(0) <= 122){
+						//判定字符串2~最后一位是否符合标准
+						for (var i = 1;i < username.length;i ++){
+							//判定第i个字符是否为小写字母
+							if (username.charCodeAt(i) >= 97 && username.charCodeAt(i) <= 122){
+								isLegal = true;
+							//判定第i个字符是否为数字
+							} else if (!isNaN(username[i])){
+								isLegal = true;
+							//判定第i个字符是否为下划线
+							} else if (username[i] == '_'){
+								isLegal = true;
+							//以上都不符合直接false并跳出整个循环
+							} else {
+								isLegal = false;
+								break;
+							}
+						}
+					}
+				}
+				
+				return isLegal;
+			}
+			
+			document.onkeydown = function(e) {
+				e = window.event || e;
+				if (e.keyCode == 13) {
+					addBtn.onclick();
+				}
+			}
+			addBtn.onclick = function() {
+					//添加数据模块
+
+					//判定用户输入是否合法模块
+					if (sid.value == '' || sname.value == '' || sage.value == '') {
+						alert('请输入内容后点确定！');
+						sid.focus();
+						return;
+					} else if (isNaN(sid.value) || isNaN(sage.value)) {
+						alert('编号和年龄必须为数字！');
+						sid.focus();
+						return;
+					} else if (sage.value < 0 || sage.value > 200){
+						alert('你家正常年龄能为' + sage.value + '岁啊！');
+						sage.focus();
+						return;
+					} else if (checkUserName(sname.value) == false){
+						alert('请输入一个合法的名字！');
+						sname.focus();
+						return;
+					}
+					
+				j++;
+
+				tr = tb.insertRow();
+				tb.appendChild(tr);
+				var trj = 'tr' + j;
+				tr.id = trj;
+
+				for (var i = 0; i < 4; i++) {
+
+					var td = document.createElement('td');
+					td = tr.insertCell();
+
+					if (i == 0) {
+
+						td.innerHTML = sid.value;
+
+					} else if (i == 1) {
+
+						td.innerHTML = sname.value;
+
+					} else if (i == 2) {
+
+						td.innerHTML = sage.value;
+
+					} else {
+
+						var input = document.createElement('input');
+						td.appendChild(input);
+						input.type = 'button';
+						input.value = '删除';
+
+						//删除思路一
+						btn = 'btn' + j;
+
+						input.id = btn;
+
+						btn = document.getElementById(btn);
+
+						btn.onclick = function() {
+
+							/*
+							var tr = document.getElementById(trj);
+							
+							tb.removeChild(tr);*/
+							//潘朱思路二
+							td.parentNode.parentNode.removeChild(td.parentNode);
+						}
+
+					}
+					//张思路三
+					/*var tds = document.querySelectorAll('#tb td');
+					
+					var tr = document.getElementById(trj);
+
+					for (var k = 0; k < tds.length; k++) {
+						
+						var a = tds[tds.length - 1];
+						
+						a.onclick = function() {
+							
+							tb.removeChild(tr);
+							
+						}
+					}*/
+
+					td.style.textAlign = 'center';
+
+				}
+
+				sid.value = '';
+				sname.value = '';
+				sage.value = '';
+				sid.focus();
+			}
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		网页打开，按钮的倒计时开始，倒计时为0是按钮可用，文字变为’立即注册‘
+		<input type="button" id="btn1" value="还有10秒" disabled/>
+		<script>
+			window.onload = function() {
+				var index = 10;
+
+				var btn1 = document.getElementById('btn1');
+
+				var timerId;
+
+				function startTimer() {
+					//启动定时器
+					timerId = setInterval(function() {
+							index--;
+						
+						if (index >= 0) {
+
+							btn1.value = '还有' + index + '秒';
+
+						} else if (index < 0) {
+
+							btn1.disabled = '';
+							document.getElementById('btn1').value = '立即注册';
+
+							clearInterval(timerId);
+						}
+					}, 1000);
+
+				}
+				startTimer();
+			}
+		</script>
+	</body>
+
+</html>

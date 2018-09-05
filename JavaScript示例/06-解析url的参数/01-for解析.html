@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" id="input" />
+		<input type="button" value="查询参数" id="btn1" onclick="getParam();" />
+		<script>
+			var url = 'http://www.baidu.com?username=tom&userpwd=123456&usercode=a9';
+			
+			/**
+			 *调用函数，传入参数名称，返回对应的参数值
+			 * @param {Object} key
+			 */
+			var first = url.split('?');
+			var two = first[1];
+			var second = two.split('&');
+			var a = document.getElementById('input');
+			document.onkeydown = function(e) {
+				e = window.event || e;
+				if (e.keyCode == 13) {
+					getParam();
+				}
+			}
+			
+			function getParam(key) {
+				
+				for(var i = 0;i < second.length;i ++){
+					
+					var third = second[i].split('=');
+					
+					for(var j = 0;j < third.length;j ++){
+						
+						if(a.value == third[j])
+							
+							alert(third[j + 1]);
+							
+					}
+				}
+			}
+			
+			
+			
+		</script>
+		
+	</body>
+</html>

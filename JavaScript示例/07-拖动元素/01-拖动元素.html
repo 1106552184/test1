@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+				
+			}
+			#dialog{
+				width: 300px;
+				height: 200px;
+				background: #ccc;
+				position: absolute;
+				top: 200px;
+				left: 300px;
+				cursor:move;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="dialog">
+			拖动我
+		</div>
+		
+		<script>
+			
+			window.onload = function(){
+				
+				var dialog = document.getElementById('dialog');
+				
+				//鼠标按下wishing
+				dialog.onmousedown = function(e){
+				e = window.event||e
+				//获得鼠标按下相对于事件源的偏移量
+						var offsetX = e.offsetX;
+						var offsetY = e.offsetY;
+					document.onmousemove = function(e){
+						e = window.event||e;
+						
+						//计算位置
+						var vLeft = e.clientX - offsetX;
+						var vTop = e.clientY - offsetX;
+						
+						//获得元素的宽度高度
+						var divWidth = dialog.offsetWidth;
+						var divHeight = dialog.offsetHeight;
+						
+						//获得视口宽高
+						//视口宽度
+						var windowWidth = document.documentElement.clientWidth;
+						//视口高度
+						var windowHeight = document.documentElement.clientHeight;
+				
+						
+						//判断div是否超过视口范围
+						if(vTop < 0)
+							return; 
+							if(vTop > windowHeight - divHeight)
+							vTop = windowHeight - divHeight;
+						if(vLeft < 0)
+							return;
+							if(vLeft > windowWidth - divWidth)
+							vLeft = windowWidth - divWidth;
+							
+						
+						//动态设置div的定位
+						dialog.style.left = vLeft  + 'px';
+						dialog.style.top = vTop +'px';
+						
+						
+					}
+					
+				}
+				//鼠标抬起事件
+				dialog.onmouseup = function(){
+					
+					document.onmousemove = null;
+				}
+			}
+			
+			
+		</script>
+		
+	</body>
+</html>

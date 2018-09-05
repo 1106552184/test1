@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+
+		<select id="province">
+			
+			<option value="">全国</option>
+			
+		</select>
+
+		<select id="city">
+			
+			<option value="">请选择</option>
+			
+		</select>
+		<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+
+		<script type="text/javascript">
+			$(function() {
+				//请求data.json
+				$.getJSON('data.json', function(data) {
+					//循环遍历json
+					$.each(data, function(i, item) {
+						//获取省赋给省option
+						$('#province').append('<option>' + item.province + '</option>')
+
+							//省改变事件
+							$('#province').change(function() {
+								
+								//全国恢复请选择
+									if ($("#province").val() != item.province) {
+										$("#city").empty();
+										$("#city").append('<option value="请选择">请选择</option>');
+									}
+								if ($("#province").val() == item.province) {
+
+									// 清除其他城市
+									$("#city").empty();
+									$("#city").append('<option value="请选择">请选择</option>');
+
+								// 添加相应省的城市
+									$.each(data, function(j, t) {
+										j <= item.cities[j].length;
+										$("#city").append('<option>' +  item.cities[j] + '</option>');
+									});	
+									
+									
+									
+
+								}
+							
+					});
+				});
+			});
+			});
+			
+		</script>
+
+	</body>
+
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<style type="text/css">
+			body {
+				font-size: 14px;
+			}
+			
+			table {
+				width: 960px;
+				margin: 0px auto;
+				border-collapse: collapse;
+				background: #999;
+			}
+			
+			div {
+				width: 960px;
+				margin: 10px auto 15px;
+				text-align: center;
+			}
+			
+			h3 {
+				margin: 10px auto;
+			}
+			
+			table td {
+				border: 1px solid #382F27;
+				text-align: center;
+				padding: 3px 3px;
+			}
+			
+			table input[type=text] {
+				width: 95%;
+			}
+			/* 高亮样式 */
+			
+			.hl {
+				background: #ccc;
+			}
+			
+			h3 {
+				margin: 0px;
+				padding: 0px;
+				font-size: 18px;
+				font-weight: bold;
+				color: #fff;
+			}
+		</style>
+		<script type="text/javascript" src="js/jquery.js"></script>
+
+	</head>
+
+	<body>
+		<table id="table1">
+			<tr>
+				<td colspan="8">
+					<h3>项目列表</h3>
+				</td>
+			</tr>
+			<tr>
+				<td>选择</td>
+				<td>编号</td>
+				<td>项目名称</td>
+				<td>项目承担部门</td>
+				<td>责任人</td>
+				<td>项目预算</td>
+				<td>开始日期</td>
+				<td>备注</td>
+			</tr>
+			<tr>
+				<td><input type="radio" name="check"></td>
+				<td>1</td>
+				<td>项目测试1</td>
+				<td>部门1</td>
+				<td>张三</td>
+				<td>￥8888.0</td>
+				<td>2015-10-13</td>
+				<td>...</td>
+			</tr>
+			<tr>
+				<td><input type="radio" name="check"></td>
+				<td>2</td>
+				<td>项目测试2</td>
+				<td>部门2</td>
+				<td>张三</td>
+				<td>￥8888.0</td>
+				<td>2015-10-13</td>
+				<td>...</td>
+			</tr>
+			<tr>
+				<td><input type="radio" name="check"></td>
+				<td>3</td>
+				<td>项目测试3</td>
+				<td>部门3</td>
+				<td>张三</td>
+				<td>￥8888.0</td>
+				<td>2015-10-13</td>
+				<td>...</td>
+			</tr>
+			<tr>
+				<td><input type="radio" name="check"></td>
+				<td>4</td>
+				<td>项目测试4</td>
+				<td>部门4</td>
+				<td>张三</td>
+				<td>￥8888.0</td>
+				<td>2015-10-13</td>
+				<td>...</td>
+			</tr>
+			<tr>
+				<td><input type="radio" name="check"></td>
+				<td>5</td>
+				<td>项目测试5</td>
+				<td>部门5</td>
+				<td>张三</td>
+				<td>￥8888.0</td>
+				<td>2015-10-13</td>
+				<td>...</td>
+			</tr>
+			<tr>
+				<td><input type="radio" name="check"></td>
+				<td>6</td>
+				<td>项目测试6</td>
+				<td>部门6</td>
+				<td>张三</td>
+				<td>￥8888.0</td>
+				<td>2015-10-13</td>
+				<td>...</td>
+			</tr>
+			<tr>
+				<td><input type="radio" name="check"></td>
+				<td>7</td>
+				<td>项目测试7</td>
+				<td>部门7</td>
+				<td>张三</td>
+				<td>￥8888.0</td>
+				<td>2015-10-13</td>
+				<td>...</td>
+			</tr>
+			<tr>
+				<td colspan="8">
+					<span>共12条记录，每页7条，共2页，当前第1页</span>
+					<a href="#">首页</a>
+					<a href="#">上页</a>
+					<a href="#">下页</a>
+					<a href="#">末页</a>
+				</td>
+			</tr>
+		</table>
+
+		<div><input type="button" id="btn" value="项目维护"></div>
+
+		<table id="table2">
+			<tr>
+				<td colspan="4">
+					<h3>项目信息维护</h3>
+				</td>
+			</tr>
+			<tr>
+				<td>项目名称</td>
+				<td><input type="text" id="name"></td>
+				<td>项目承担部门</td>
+				<td><input type="text" id="department"></td>
+			</tr>
+			<tr>
+				<td>责任人</td>
+				<td><input type="text" id="person"></td>
+				<td>项目预算</td>
+				<td><input type="text" id="budget"></td>
+			</tr>
+			<tr>
+				<td>开始日期</td>
+				<td><input type="text" id="date"></td>
+				<td>备注</td>
+				<td><input type="text" id="remark"></td>
+			</tr>
+			<tr>
+				<td colspan="4">
+					<input type="button" id="add" value="添加">
+					<input type="button" id="update" value="修改" disabled>
+					<input type="button" id="del" value="删除" disabled>
+					<input type="button" id="search" value="查询">
+					<input type="button" id="clear" value="清除">
+				</td>
+			</tr>
+		</table>
+		<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			$(function() {
+
+				
+				//事件委托，给所有单选按钮添加单击事件(表单显示数据）
+				$('#table1').on('click', ':radio[name=check]', function() {
+
+					$('#name').focus();
+
+					//高亮当前选中的行tr
+					highligh();
+					
+					
+					//提取当tr的内容显示到表单中
+					var tds = $(this).parents('tr').find('td');
+				
+					$('#name').val( tds.eq(2).text() );	
+					$('#department').val( tds.eq(3).text() );
+					$('#person').val( tds.eq(4).text() );
+					$('#budget').val( tds.eq(5).text() );
+					$('#date').val( tds.eq(6).text() );
+					$('#remark').val( tds.eq(7).text() );
+					//修改，删除按钮可用				
+					$('#del,#update').prop('disabled', false);
+
+				});
+
+				//添加
+				$('#table2 #add').click(function(e) {
+
+					//获得数据行的最后一个编号
+					var index = $('#table1 tr').siblings().length;
+					
+					index -= 2;
+					
+					var name =  $('#name').val();
+					var department =  $('#department').val();
+					var person =  $('#person').val();
+					var budget =  $('#budget').val();
+					var date =  $('#date').val();
+					var remark =  $('#remark').val();
+					//生成一个tr追加到数据行末尾
+					var tr = '';
+					tr += '<tr>';
+					tr += '	<td><input type="radio" name="check"></td>';
+					tr += '	<td>' + index + '</td>';
+					tr += '	<td>' + name + '</td>';
+					tr += '	<td>' + department + '</td>';
+					tr += '	<td>' + person + '</td>';
+					tr += '	<td>' + budget + '</td>';
+					tr += '	<td>' + date + '</td>';
+					tr += '	<td>' + remark + '</td>';
+					tr += '</tr>';
+							
+					//追加到数据行的末尾
+					$('#table1 tr:last').before(tr);	
+				
+					$('#table2 :input[type = text]').val('');
+
+					clr();
+				});
+
+				/*
+				 清除函数
+				 * */
+				function clr() {
+
+					//清除表单数据
+					$('#table2 :input[type = text]').val('');
+
+					//清除高亮
+					$('#table1 tr').removeClass('hl');
+
+					//取消单选选中
+					$('#table1 :radio').prop('checked', false);
+
+					//修改删除按钮不可用
+					$('#del,#update').prop('disabled', true);
+
+				}
+				
+				//修改功能
+				$('#update').click(function() {
+
+					//获得表单数据
+					var name =  $('#name').val();
+					var department =  $('#department').val();
+					var person =  $('#person').val();
+					var budget =  $('#budget').val();
+					var date =  $('#date').val();
+					var remark =  $('#remark').val();
+									
+					//替换当前修改行的td的内容
+					var tds = $('.hl').find('td');
+					
+					tds.eq(2).text( name );
+					tds.eq(3).text( department );
+					tds.eq(4).text( person );
+					tds.eq(5).text( budget );
+					tds.eq(6).text( date );
+					tds.eq(7).text( remark );
+
+					//调用清除函数
+
+					clr();
+
+				});
+
+				
+				$('#del').click(function() {
+
+					var flag = window.confirm('确定要删除此条数据吗？');
+				
+					if (!flag)
+					return;
+					
+					//删除当前选中的行
+					
+					$('.hl').remove();
+					//调用清除函数	
+					clr();
+
+				});
+				
+				$('#clear').click(function() {
+
+					clr();
+
+				});
+
+				function highligh() {
+					//高亮当前选中行tr
+
+					$('#table1 tr').removeClass('hl');
+					//高亮
+					$('#table1 :radio:checked').parents('tr').addClass('hl');
+
+				}
+
+			});
+		</script>
+
+	</body>
+
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<table width="500" border="1" id="tb1">
+			<tr>
+				<th>编号</th>
+				<th>姓名</th>
+				<th>年龄</th>
+				<th>操作</th>
+			</tr>
+		</table>
+		<form action="">
+			<table>
+				<tr>
+					<td>编号</td>
+					<td>
+						<input type="text" id="sid" />
+					</td>
+				</tr>
+				<tr>
+					<td>姓名</td>
+					<td>
+						<input type="text" id="sname" />
+					</td>
+				</tr>
+				<tr>
+					<td>年龄</td>
+					<td>
+						<input type="text" id='sage' />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="button" value="增加学生" id="addBtn" onclick="m1()" />
+
+					</td>
+				</tr>
+			</table>
+		</form>
+	</body>
+	<script type="text/javascript">
+		function m1() {
+			
+			var tb1 = document.getElementById('tb1');
+			var sid = document.getElementById('sid');
+			var sname = document.getElementById('sname');
+			var sage = document.getElementById('sage');
+			var btn1 = document.getElementById('btn1');
+			
+			var tr = tb1.insertRow();
+			
+			for (var i = 0; i < 4; i++) {
+				
+				var td = tr.insertCell();
+				
+				if (i == 0)
+					td.innerHTML = sid.value;
+
+				if (i == 1)
+					td.innerHTML = sname.value;
+
+				if (i == 2)
+					td.innerHTML = sage.value;
+
+				if (i == 3)
+					td.innerHTML = '<button>删除</button>';
+					
+				td.onclick = function() {
+					tr.parentNode.removeChild(tr);
+				}
+					
+			}
+			
+			sid.value = '';
+			sname.value = '';
+			sage.value = '';
+		}
+
+		window.onload = function(e) {
+			
+			e = window.event || e;
+			var sid = document.getElementById('sid');
+			
+			document.onkeydown = function(e) {
+				if (e.keyCode == 13) {
+					m1();
+					sid.focus();
+				}
+			}
+		}
+	</script>
+
+</html>
