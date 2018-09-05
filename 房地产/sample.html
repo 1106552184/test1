@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			ul,
+			li {
+				list-style-type: none;
+			}
+			
+			a {
+				text-decoration: none;
+				color: #000000;
+				font-size: 14px;
+			}
+			
+			#menu-left {
+				width: 160px;
+				height: 100%;
+				position: fixed;
+				top: 0;
+				left: -160px;
+				background: rgba(0, 0, 0, 0.8);
+				color: #CCCCCC;
+				font-size: 12px;
+				cursor: pointer;
+			}
+			
+			#menu-left h4 {
+				line-height: 40px;
+				border-bottom: 1px solid #666;
+				font-size: 16px;
+			}
+			
+			#menu-left ul {
+				height: calc(100%-40px);
+				overflow: auto;
+			}
+			
+			#menu-left ul li {
+				line-height: 40px;
+			}
+			
+			#menu-left ul li a {
+				color: #fff;
+				padding-left: 20px;
+				display: block;
+			}
+			
+			#menu-left ul li a:hover {
+				background: rgba(255, 255, 255, 0.1);
+			}
+			
+			.btn {
+				width: 20px;
+				height: 65px;
+				position: absolute;
+				background: #999999;
+				text-align: center;
+				right: -20px;
+				top: 150px;
+			}
+			
+			#app {
+				width: 100%;
+				height: 100%;
+			}
+			/*菜单容器*/
+			
+			table {
+				width: 960px;
+				margin: 50px auto;
+				border-collapse: collapse;
+				background: #999;
+			}
+			
+			table h3 {
+				margin: 10px auto;
+			}
+			
+			table td {
+				border: 1px solid #382F27;
+				text-align: center;
+				padding: 3px 3px;
+			}
+			
+			table input[type=text] {
+				width: 95%;
+			}
+			/* 高亮样式 */
+			
+			table .hl {
+				background: #ccc;
+			}
+			
+			table h3 {
+				margin: 0px;
+				padding: 0px;
+				font-size: 18px;
+				font-weight: bold;
+				color: #fff;
+			}
+			
+			a:hover {
+				color: red;
+			}
+		</style>
+
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+	</head>
+
+	<body>
+		<!-- 回到顶部按钮 -->
+		<a href="javascript:void(0);" class="toTop">
+			<img src="images/totop.png" alt="">
+		</a>
+		<!-- 网页头部开始 -->
+		<div class="header">
+
+			<div class="header_content">
+
+				<!-- 头部左侧 -->
+				<div class "header_left">
+					<ul>
+						<li><a href="index.html">首页</a></li>
+						<li><a href="neighbor.html">进入社区</a></li>
+					</ul>
+				</div>
+
+				<!-- 头部右侧 -->
+				<div class="header_right">
+					<ul>
+						<li><a href="" style="color:#38b5f9;">签到</a></li>
+						<li><a href="login.html">登录</a></li>
+						<li><a href="register.html">注册</a></li>
+					</ul>
+				</div>
+
+			</div>
+
+		</div>
+		<!-- 网页头部结束 -->
+
+		<!-- 导航栏区域开始 -->
+		<div class="naver">
+			<img src="images/logo.png" alt="三人网" id="logo">
+			<ul>
+				<li><a href="index.html" class="naver-select">首页</a></li>
+				<li><a href="sample.html">房屋查找</a></li>
+				<li><a href="pictures.html">效果图</a></li>
+				<li><a href="neighbor.html">社区</a></li>
+				<li class="hot">
+					<a href="app.html">下载APP</a>
+					<img src="images/hot.gif">
+				</li>
+			</ul>
+
+		</div>
+		<!-- 导航栏区域结束 -->
+
+		<table id="table1">
+			<tr>
+				<td colspan="8">
+					<h3>项目列表</h3>
+				</td>
+			</tr>
+			<tr>
+				<td>选择</td>
+				<td>编号</td>
+				<td>房屋名称</td>
+				<td>所在地区</td>
+				<td>责任人</td>
+				<td>房屋价格</td>
+				<td>日期</td>
+				<td>状态</td>
+			</tr>
+			<tr>
+				<td><input type="radio" name="check"></td>
+				<td>1</td>
+				<td>毛坯房1</td>
+				<td>北京</td>
+				<td>张三</td>
+				<td>￥888888.0</td>
+				<td>2018-1-13</td>
+				<td>空闲</td>
+			</tr>
+			<tr>
+				<td><input type="radio" name="check"></td>
+				<td>2</td>
+				<td>毛坯房2</td>
+				<td>北京</td>
+				<td>张三</td>
+				<td>￥888888.0</td>
+				<td>2018-1-13</td>
+				<td>空闲</td>
+			</tr>
+			<tr>
+				<td><input type="radio" name="check"></td>
+				<td>3</td>
+				<td>毛坯房3</td>
+				<td>北京</td>
+				<td>张三</td>
+				<td>￥888888.0</td>
+				<td>2018-1-13</td>
+				<td>空闲</td>
+			</tr>
+			<tr>
+				<td><input type="radio" name="check"></td>
+				<td>4</td>
+				<td>毛坯房4</td>
+				<td>北京</td>
+				<td>张三</td>
+				<td>￥888888.0</td>
+				<td>2018-1-13</td>
+				<td>空闲</td>
+			</tr>
+			<tr>
+				<td><input type="radio" name="check"></td>
+				<td>5</td>
+				<td>毛坯房5</td>
+				<td>上海</td>
+				<td>李四</td>
+				<td>￥888888.0</td>
+				<td>2018-1-13</td>
+				<td>空闲</td>
+			</tr>
+			<tr>
+				<td><input type="radio" name="check"></td>
+				<td>6</td>
+				<td>毛坯房6</td>
+				<td>上海</td>
+				<td>李四</td>
+				<td>￥888888.0</td>
+				<td>2018-1-13</td>
+				<td>空闲</td>
+			</tr>
+			<tr>
+				<td><input type="radio" name="check"></td>
+				<td>7</td>
+				<td>毛坯房7</td>
+				<td>上海</td>
+				<td>李四</td>
+				<td>￥888888.0</td>
+				<td>2018-1-13</td>
+				<td>空闲</td>
+			</tr>
+			<tr>
+				<td colspan="8">
+					<span id="information">共7条记录</span>
+					<a href="#">首页</a>
+					<a href="#">上页</a>
+					<a href="#">下页</a>
+					<a href="#">末页</a>
+				</td>
+			</tr>
+		</table>
+
+
+		<table id="table2">
+			<tr>
+				<td colspan="4">
+					<h3>房屋信息维护</h3>
+
+				</td>
+			</tr>
+			<tr>
+				<td>房屋名称</td>
+				<td><input type="text" id="name"></td>
+				<td>所在地区</td>
+				<td><input type="text" id="department"></td>
+			</tr>
+			<tr>
+				<td>责任人</td>
+				<td><input type="text" id="person"></td>
+				<td>房屋价格</td>
+				<td><input type="text" id="budget"></td>
+			</tr>
+			<tr>
+				<td>日期</td>
+				<td><input type="text" id="date"></td>
+				<td>状态</td>
+				<td><input type="text" id="remark"></td>
+			</tr>
+			<tr>
+				<td colspan="4">
+					<input type="button" id="add" value="添加">
+					<input type="button" id="update" value="修改" disabled>
+					<input type="button" id="del" value="删除" disabled>
+					<!--<input type="button" id="search" value="查询">-->
+					<input type="button" id="clear" value="清除">
+					<input type="button" id="mark" value="标记出售" disabled>
+					<input type="button" id="remark1" value="解除占用" disabled>
+				</td>
+			</tr>
+		</table>
+		<!--侧滑菜单容器开始-->
+		<div id="menu-left">
+			<h4 style="text-align: center;">侧滑菜单</h4>
+			<ul>
+				<li><a href="index.html">首页</a></li>
+				<li><a href="pictures.html">效果图</a></li>
+				<li><a href="login.html">登录</a></li>
+				<li><a href="register.html">注册</a></li>
+				<li><a href="javascript:;">友情链接</a></li>
+				<li><a href="javascript:;">友情链接</a></li>
+				<li><a href="javascript:;">友情链接</a></li>
+
+			</ul>
+			<div class="btn">
+				隐藏菜单
+			</div>
+		</div>
+
+		<div class="footer">
+
+			<div class="footer_nav">
+				<ul>
+					<li>
+						<h6>关于我们</h6>
+						<div>
+							<a href="#">充满活力的团队</a>
+							<a href="#">加入我们</a>
+							<a href="#">新闻中心</a>
+							<a href="#">新手帮助</a>
+						</div>
+					</li>
+					<li>
+						<h6>产品和服务</h6>
+						<div>
+							<a href="#">云设计中心</a>
+							<a href="#">样板间</a>
+							<a href="#">户型改造</a>
+							<a href="#">风水评测</a>
+							<a href="#">手机应用</a>
+							<a href="#">虚拟体验馆</a>
+						</div>
+					</li>
+					<li>
+						<h6>更多</h6>
+						<div>
+							<a href="#">商务合作</a>
+							<a href="#">酷币购买</a>
+							<a href="#">代理加盟</a>
+							<a href="#">设计师招募</a>
+						</div>
+					</li>
+					<li class="footer_contact">
+						<h6>联系我们</h6>
+						<p>
+							<span class="fc_name">商务</span>
+							<span class="fc">电话：0571-81021879</span>
+							<span class="fc"><a href="#">QQ: 2850219528</a></span>
+						</p>
+						<p>
+							<span class="fc_name">客服</span>
+							<span class="fc"><a href="#">QQ: 800020682</a></span>
+						</p>
+						<p>
+							<span class="fc_name">关注</span>
+							<span class="fc fc_weibo"><a href="#"></a></span>
+							<span class="fc fc_weixin"><a href="#"></a></span>
+						</p>
+					</li>
+				</ul>
+			</div>
+
+			<div class="footer_bottom">
+				<span class="footer_link-name">友情链接</span>
+				<div class="footer_link">
+
+					<a href="#">三人网</a>
+					<span>|</span>
+
+					<a href="#">搬家厉害网</a>
+					<span>|</span>
+
+					<a href="#">聪明网</a>
+					<span>|</span>
+
+					<a href="#">中国环保网</a>
+					<span>|</span>
+
+					<a href="#">卧室装修</a>
+					<span>|</span>
+
+					<a href="#">卫浴</a>
+					<span>|</span>
+
+					<a href="#">装修</a>
+					<span>|</span>
+
+					<a href="#">杭州分类信息网</a>
+					<span>|</span>
+
+					<a href="#">欧式电视柜</a>
+					<span>|</span>
+
+					<a href="#">浙江招标网</a>
+					<span>|</span>
+
+					<a href="#">广州家居装修</a>
+					<span>|</span>
+
+					<a href="#">三人拆迁</a>
+					<span>|</span>
+
+					<a href="#">三人手机站</a>
+
+				</div>
+				<div class="footer_copyright">
+					本网站仅供学习交流，版权所有：<a href="#">三人房地网</a>&nbsp;&nbsp;如有侵权，立即删除
+				</div>
+
+			</div>
+
+			<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+			<script>
+				$(function() {
+
+					$('#name').focus();
+					//事件委托，给所有单选按钮添加单击事件(表单显示数据）
+					$('#table1').on('click', ':radio[name=check]', function() {
+
+						$('#name').focus();
+
+						//高亮当前选中的行tr
+						highligh();
+
+						//提取当tr的内容显示到表单中
+						var tds = $(this).parents('tr').find('td');
+
+						$('#name').val(tds.eq(2).text());
+						$('#department').val(tds.eq(3).text());
+						$('#person').val(tds.eq(4).text());
+						$('#budget').val(tds.eq(5).text());
+						$('#date').val(tds.eq(6).text());
+						$('#remark').val(tds.eq(7).text());
+						//修改，删除按钮可用				
+						$('#del,#update').prop('disabled', false);
+
+						if ($('.hl').find('td').eq(7).text() == '空闲') {
+							$('#mark').prop('disabled', false);
+							$('#remark').prop('disabled', true);
+						}
+
+						if ($('.hl').find('td').eq(7).text() == '占用') {
+
+							$('#remark').prop('disabled', false);
+							$('#mark').prop('disabled', true);
+						}
+
+					});
+
+					//添加
+					$('#table2 #add').click(function(e) {
+
+						//获得数据行的最后一个编号
+						var index = $('#table1 tr').siblings().length;
+
+						index -= 2;
+
+						$('#information').text('共有' + index + '条信息');
+						var name = $('#name').val();
+						var department = $('#department').val();
+						var person = $('#person').val();
+						var budget = $('#budget').val();
+						var date = $('#date').val();
+						var remark = $('#remark').val();
+						//生成一个tr追加到数据行末尾
+						var tr = '';
+						tr += '<tr>';
+						tr += '	<td><input type="radio" name="check"></td>';
+						tr += '	<td>' + index + '</td>';
+						tr += '	<td>' + name + '</td>';
+						tr += '	<td>' + department + '</td>';
+						tr += '	<td>' + person + '</td>';
+						tr += '	<td>' + budget + '</td>';
+						tr += '	<td>' + date + '</td>';
+						tr += '	<td>' + remark + '</td>';
+						tr += '</tr>';
+
+						//追加到数据行的末尾
+						$('#table1 tr:last').before(tr);
+
+						$('#table2 :input[type = text]').val('');
+
+						clr();
+					});
+					//标记出售
+					$('#table2 #mark').click(function(e) {
+
+						$('.hl').find('td').eq(7).text('占用');
+						$('#table2 #remark1').prop('disabled', false);
+						$('#table2 #mark').prop('disabled', true);
+
+					});
+					//解除占用
+					$('#table2 #remark1').click(function(e) {
+
+						$('.hl').find('td').eq(7).text('空闲');
+						$('#table2 #mark').prop('disabled', false);
+						$('#table2 #remark1').prop('disabled', true);
+
+					});
+					/*
+					 清除函数
+					 * */
+					function clr() {
+
+						//清除表单数据
+						$('#table2 :input[type = text]').val('');
+
+						//清除高亮
+						$('#table1 tr').removeClass('hl');
+
+						//取消单选选中
+						$('#table1 :radio').prop('checked', false);
+
+						//修改删除按钮不可用
+						$('#del,#update').prop('disabled', true);
+
+					}
+
+					//修改功能
+					$('#update').click(function() {
+
+						//获得表单数据
+						var name = $('#name').val();
+						var department = $('#department').val();
+						var person = $('#person').val();
+						var budget = $('#budget').val();
+						var date = $('#date').val();
+						var remark = $('#remark').val();
+
+						//替换当前修改行的td的内容
+						var tds = $('.hl').find('td');
+
+						tds.eq(2).text(name);
+						tds.eq(3).text(department);
+						tds.eq(4).text(person);
+						tds.eq(5).text(budget);
+						tds.eq(6).text(date);
+						tds.eq(7).text(remark);
+
+						//调用清除函数
+
+						clr();
+
+					});
+
+					$('#del').click(function() {
+
+						var flag = window.confirm('确定要删除此条数据吗？');
+
+						if (!flag)
+							return;
+
+						//删除当前选中的行
+
+						$('.hl').remove();
+						//调用清除函数	
+						clr();
+
+					});
+
+					$('#clear').click(function() {
+
+						clr();
+
+					});
+
+					function highligh() {
+						//高亮当前选中行tr
+
+						$('#table1 tr').removeClass('hl');
+						//高亮
+						$('#table1 :radio:checked').parents('tr').addClass('hl');
+
+					}
+
+
+					$('#menu-left').hover(function() {
+
+						$('#menu-left').stop();
+
+						$('#menu-left').animate({
+							left: 0
+
+						}, 2000);
+
+					}, function() {
+
+						$('#menu-left').stop();
+
+						$('#menu-left').animate({
+
+							left: -160
+
+						}, 2000);
+					});
+
+				});
+			</script>
+
+	</body>
+
+</html>
